@@ -1,55 +1,57 @@
-#include <bits/stdc++.h>;
+#include <iostream>
+#include <queue>
+#include <string>
 using namespace std;
 
-stuct TreeNode {
+struct TreeNode {
     int priority;
     string task;
-    TreeNode*right=null;
-    TreeNode*left=null;
+    TreeNode* right;
+    TreeNode* left;
+    TreeNode* parent;
 
-    Treenode(int priority,string task,) : priority(priority), task(task), right(nullptr), left(nullptr){}
-
+    TreeNode(int priority, string task) : priority(priority), task(task), right(nullptr), left(nullptr) {}
 };
-addTask(int priority,string task){
-    TreeNode* newNode = new TreeNode;
-    if(!root){
-        root=newNode;
+
+TreeNode* root = nullptr;
+
+void addTask(int priority, string task) {
+    TreeNode* newNode = new TreeNode(priority, task);
+    if (!root) {
+        root = newNode;
+        cout << " nodeInserted with Priority: " << newNode->priority << " Task: " << newNode->task << endl;
         return;
     }
-    int queue<TreeNode*>q;
-    queue.push(newNode);
-    while(!queue.empty()){
+    queue<TreeNode*> q;
+    q.push(root);
+    while (!q.empty()) {
         TreeNode* temp = q.front();
         q.pop();
-        if(temp->left==nullptr){
-            temp->left=newNode;
-            newNode->parent=temp;
-            return;
-         }
-         else
-         q.push(temp->left);
-        if(temp->right==nullptr){
-            temp->right=newNode;
-            newNode->parent=temp;
+        if (temp->left == nullptr) {
+            temp->left = newNode;
+            newNode->parent = temp;
+            cout << " nodeInserted with Priority: " << newNode->priority << " Task: " << newNode->task << endl;
             return;
         }
         else
-        q.push(temp->right);
+            q.push(temp->left);
+        if (temp->right == nullptr) {
+            temp->right = newNode;
+            newNode->parent = temp;
+            cout << "nodeInserted with Priority:" << newNode->priority << " Task: " << newNode->task << endl;
+            return;
+        }
+        else
+            q.push(temp->right);
     }
-    cout<<nodeInserted with Priority:<< newNode->priority<<Task: <<newNode->task;
+   }
 
-
-}
-
-
-int main(){
-    TreeNode* root = nullptr;
-
+int main() {
     // Example usage
     addTask(5, "Task 1");
     addTask(3, "Task 2");
     addTask(8, "Task 3");
 
+
     return 0;
-    
 }
