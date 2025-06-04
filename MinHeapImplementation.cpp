@@ -10,8 +10,6 @@ stuct TreeNode {
     Treenode(int priority,string task,) : priority(priority), task(task), right(nullptr), left(nullptr){}
 
 };
-
-
 addTask(int priority,string task){
     TreeNode* newNode = new TreeNode;
     if(!root){
@@ -45,5 +43,13 @@ addTask(int priority,string task){
 
 
 int main(){
+    TreeNode* root = nullptr;
+
+    // Example usage
+    addTask(5, "Task 1");
+    addTask(3, "Task 2");
+    addTask(8, "Task 3");
+
+    return 0;
     
 }
